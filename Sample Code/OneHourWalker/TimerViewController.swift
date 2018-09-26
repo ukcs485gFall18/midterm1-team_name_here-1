@@ -42,8 +42,8 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
 
     }
     
-    @IBAction func startTimer(sender: AnyObject) {
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: Selector(("updateTime")), userInfo: nil, repeats: true)
+    @objc @IBAction func startTimer(sender: AnyObject) {
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
         zeroTime = NSDate.timeIntervalSinceReferenceDate
         
         distanceTraveled = 0.0
@@ -58,7 +58,7 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
-    func updateTime() {
+    @objc func updateTime() {
         let currentTime = NSDate.timeIntervalSinceReferenceDate
         var timePassed: TimeInterval = currentTime - zeroTime
         let minutes = UInt8(timePassed / 60.0)
@@ -79,11 +79,11 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if startLocation == nil {
-            startLocation = locations.first as CLLocation!
+            startLocation = locations.first
         } else {
-            let lastDistance = lastLocation.distance(from: locations.last as CLLocation!)
+            let lastDistance = lastLocation.distance(from: locations.last as! CLLocation)
             distanceTraveled += lastDistance * 0.000621371
             
             let trimmedDistance = String(format: "%.2f", distanceTraveled)
@@ -91,7 +91,7 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
             milesLabel.text = "\(trimmedDistance) Miles"
         }
         
-        lastLocation = locations.last as CLLocation!
+        lastLocation = locations.last
     }
     
     @IBAction func share(sender: AnyObject) {

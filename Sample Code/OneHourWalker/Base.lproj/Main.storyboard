@@ -42,45 +42,33 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00 Miles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjr-Zl-GdU">
-                                <rect key="frame" x="56" y="172" width="263" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="YoB-4G-FEJ"/>
-                                    <constraint firstAttribute="width" constant="263" id="wxA-Z8-LzB"/>
-                                </constraints>
+                                <rect key="frame" x="128" y="172" width="119.5" height="32"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="27"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6XY-eo-Awp" customClass="CustomButton" customModule="OneHourWalker" customModuleProvider="target">
-                                <rect key="frame" x="131" y="285" width="113" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="Aqf-p3-qPc"/>
-                                    <constraint firstAttribute="width" constant="113" id="mGi-Jg-9WH"/>
-                                </constraints>
+                                <rect key="frame" x="171.5" y="250" width="32" height="30"/>
                                 <state key="normal" title="Stop">
                                     <color key="titleColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="stopTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IZp-n8-Zej"/>
-                                    <action selector="stopTimerWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Iw-r3-psY"/>
+                                    <action selector="stopTimerWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Of-ZQ-fT5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cv-9b-rij" customClass="CustomButton" customModule="OneHourWalker" customModuleProvider="target">
-                                <rect key="frame" x="131" y="341" width="113" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="113" id="CZh-lw-A6j"/>
-                                    <constraint firstAttribute="height" constant="48" id="wmM-1H-KY3"/>
-                                </constraints>
+                                <rect key="frame" x="167.5" y="288" width="40" height="30"/>
                                 <state key="normal" title="Share">
                                     <color key="titleColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="share:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zra-tf-DVZ"/>
-                                    <action selector="shareWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xj7-DN-9jN"/>
+                                    <action selector="shareWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VPW-5C-zyW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YrR-Ti-pGA">
-                                <rect key="frame" x="16" y="397" width="343" height="31"/>
+                                <rect key="frame" x="16" y="326" width="343" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="a7z-ad-tsz"/>
                                 </constraints>
@@ -89,17 +77,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTg-Uh-lDt" customClass="CustomButton" customModule="OneHourWalker" customModuleProvider="target">
-                                <rect key="frame" x="131" y="229" width="113" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="Kxu-EC-m3s"/>
-                                    <constraint firstAttribute="width" constant="113" id="n1V-zn-AqD"/>
-                                </constraints>
+                                <rect key="frame" x="172.5" y="212" width="30" height="30"/>
                                 <state key="normal" title="Go">
                                     <color key="titleColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="startTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t9P-Pj-tdv"/>
-                                    <action selector="startTimerWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cAQ-qq-ytI"/>
+                                    <action selector="startTimerWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tum-9f-vbq"/>
                                 </connections>
                             </button>
                         </subviews>
