@@ -53,8 +53,7 @@
                                     <color key="titleColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="stopTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IZp-n8-Zej"/>
-                                    <action selector="stopTimerWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Of-ZQ-fT5"/>
+                                    <action selector="stopTimerWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZhD-3v-5yE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cv-9b-rij" customClass="CustomButton" customModule="OneHourWalker" customModuleProvider="target">
@@ -63,8 +62,7 @@
                                     <color key="titleColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="share:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zra-tf-DVZ"/>
-                                    <action selector="shareWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VPW-5C-zyW"/>
+                                    <action selector="shareWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dJ3-D4-nKs"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YrR-Ti-pGA">
