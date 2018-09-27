@@ -5,7 +5,7 @@
 //  Created by Matthew Maher on 2/18/16.
 //  Copyright © 2016 Matt Maher. All rights reserved.
 //
-
+import HealthKit
 import UIKit
 import CoreLocation
 
@@ -23,6 +23,8 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     var lastLocation: CLLocation!
     var distanceTraveled = 0.0
     
+    let healthManager:HealthKitManager = HealthKitManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +37,60 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
         else {
             print("Location service disabled");
         }
+        
+        // We cannot access the user's HealthKit data without specific permission.
+        getHealthKitPermission()
+    }
+    
+    var height: HKQuantitySample?
+    
+    func getHealthKitPermission() {
+        
+        // Seek authorization in HealthKitManager.swift.
+        healthManager.authorizeHealthKit { (authorized,  error) -> Void in
+            if authorized {
+                
+                // Get and set the user's height.
+                self.setHeight()
+            } else {
+                if error != nil {
+                    print(error!)
+                }
+                print("Permission denied.")
+            }
+        }
+        setHeight()
+    }
+    
+    func setHeight() {
+        // Create the HKSample for Height.
+        let heightSample = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)
+        
+        // Call HealthKitManager's getSample() method to get the user's height.
+        self.healthManager.getHeight(sampleType: heightSample!, completion: { (userHeight, error) -> Void in
+            
+            if( error != nil ) {
+                print("Error: \(String(describing: error?.localizedDescription))")
+                return
+            }
+            
+            var heightString = ""
+            
+            self.height = userHeight as? HKQuantitySample
+            
+            // The height is formatted to the user's locale.
+            if let meters = self.height?.quantity.doubleValue(for: HKUnit.meter()) {
+                let formatHeight = LengthFormatter()
+                formatHeight.isForPersonHeightUse = true
+                heightString = formatHeight.string(fromMeters: meters)
+            }
+            
+            // Set the label to reflect the user's height.
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.heightLabel.text = heightString
+            })
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,7 +151,7 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func share(sender: AnyObject) {
-        
+        healthManager.saveDistance(distanceRecorded: distanceTraveled, date: NSDate())
     }
 
 }
