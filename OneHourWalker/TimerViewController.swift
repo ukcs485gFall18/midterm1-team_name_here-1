@@ -86,8 +86,8 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
             }
             
             // Set the label to reflect the user's height.
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.heightLabel.text = heightString
+            DispatchQueue.global().async(execute: DispatchQueue.main.async{
+                self.heightLabel?.text = heightString
             })
         })
         

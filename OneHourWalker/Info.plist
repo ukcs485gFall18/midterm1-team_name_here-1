@@ -34,6 +34,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>some string value stating the reason</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>some string value stating the reason</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

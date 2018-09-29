@@ -12,12 +12,12 @@
 		2CB31D021C760FAD006D044B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB31D001C760FAD006D044B /* Main.storyboard */; };
 		2CB31D041C760FAD006D044B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB31D031C760FAD006D044B /* Assets.xcassets */; };
 		2CB31D071C760FAD006D044B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB31D051C760FAD006D044B /* LaunchScreen.storyboard */; };
-		2CB31D121C760FAD006D044B /* OneHourWalkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB31D111C760FAD006D044B /* OneHourWalkerTests.swift */; };
 		2CB31D1D1C760FAD006D044B /* OneHourWalkerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB31D1C1C760FAD006D044B /* OneHourWalkerUITests.swift */; };
 		2CB31D361C7611A8006D044B /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB31D351C7611A8006D044B /* TimerViewController.swift */; };
 		2CB31D381C761905006D044B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB31D371C761905006D044B /* CustomView.swift */; };
 		2CB31D3A1C762204006D044B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB31D391C762204006D044B /* CustomButton.swift */; };
 		2CB31D3C1C77637D006D044B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB31D3B1C77637D006D044B /* CoreLocation.framework */; };
+		7EC2D2B9215ECA540061F762 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC2D2B8215ECA540061F762 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +46,6 @@
 		2CB31D061C760FAD006D044B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CB31D081C760FAD006D044B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CB31D0D1C760FAD006D044B /* OneHourWalkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneHourWalkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CB31D111C760FAD006D044B /* OneHourWalkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneHourWalkerTests.swift; sourceTree = "<group>"; };
-		2CB31D131C760FAD006D044B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CB31D181C760FAD006D044B /* OneHourWalkerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneHourWalkerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CB31D1C1C760FAD006D044B /* OneHourWalkerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneHourWalkerUITests.swift; sourceTree = "<group>"; };
 		2CB31D1E1C760FAD006D044B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +53,8 @@
 		2CB31D371C761905006D044B /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		2CB31D391C762204006D044B /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		2CB31D3B1C77637D006D044B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7EC2D2B0215EC9950061F762 /* OneHourWalker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneHourWalker.entitlements; sourceTree = "<group>"; };
+		7EC2D2B8215ECA540061F762 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CB31D3C1C77637D006D044B /* CoreLocation.framework in Frameworks */,
+				7EC2D2B9215ECA540061F762 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,9 +97,9 @@
 			children = (
 				2CB31D3B1C77637D006D044B /* CoreLocation.framework */,
 				2CB31CFB1C760FAD006D044B /* OneHourWalker */,
-				2CB31D101C760FAD006D044B /* OneHourWalkerTests */,
 				2CB31D1B1C760FAD006D044B /* OneHourWalkerUITests */,
 				2CB31CFA1C760FAD006D044B /* Products */,
+				7EC2D2B1215EC9950061F762 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +116,7 @@
 		2CB31CFB1C760FAD006D044B /* OneHourWalker */ = {
 			isa = PBXGroup;
 			children = (
+				7EC2D2B0215EC9950061F762 /* OneHourWalker.entitlements */,
 				2C5F67A51C7D5343008410B5 /* Manager */,
 				2CB31D2D1C7610C2006D044B /* Controller */,
 				2CB31D2C1C7610B9006D044B /* View */,
@@ -125,15 +127,6 @@
 				2CB31D081C760FAD006D044B /* Info.plist */,
 			);
 			path = OneHourWalker;
-			sourceTree = "<group>";
-		};
-		2CB31D101C760FAD006D044B /* OneHourWalkerTests */ = {
-			isa = PBXGroup;
-			children = (
-				2CB31D111C760FAD006D044B /* OneHourWalkerTests.swift */,
-				2CB31D131C760FAD006D044B /* Info.plist */,
-			);
-			path = OneHourWalkerTests;
 			sourceTree = "<group>";
 		};
 		2CB31D1B1C760FAD006D044B /* OneHourWalkerUITests */ = {
@@ -160,6 +153,14 @@
 				2CB31D351C7611A8006D044B /* TimerViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		7EC2D2B1215EC9950061F762 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7EC2D2B8215ECA540061F762 /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +231,15 @@
 				TargetAttributes = {
 					2CB31CF81C760FAC006D044B = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = T98M82P63Y;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					2CB31D0C1C760FAD006D044B = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -305,7 +315,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CB31D121C760FAD006D044B /* OneHourWalkerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +446,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_ENTITLEMENTS = OneHourWalker/OneHourWalker.entitlements;
+				DEVELOPMENT_TEAM = T98M82P63Y;
 				INFOPLIST_FILE = OneHourWalker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gommmd.OneHourWalker;
@@ -450,7 +460,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_ENTITLEMENTS = OneHourWalker/OneHourWalker.entitlements;
+				DEVELOPMENT_TEAM = T98M82P63Y;
 				INFOPLIST_FILE = OneHourWalker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gommmd.OneHourWalker;
