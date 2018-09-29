@@ -5,6 +5,8 @@
 //  Created by Matthew Maher on 2/18/16.
 //  Copyright © 2016 Matt Maher. All rights reserved.
 //
+//  Code refactored for Swift 4.2 by Darren Powers, Siyuan Chen, and Joshua Terrell
+//
 import HealthKit
 import UIKit
 import CoreLocation
@@ -14,6 +16,7 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var milesLabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var activeEnergyBurnedLabel: UILabel!
     
     var zeroTime = TimeInterval()
     var timer : Timer = Timer()
@@ -43,6 +46,7 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     var height: HKQuantitySample?
+    var activeEnergyBurned: HKQuantitySample?
     
     func getHealthKitPermission() {
         
@@ -60,6 +64,42 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
         setHeight()
+        setActiveEnergyBurned()
+    }
+    
+    func setActiveEnergyBurned() {
+        /* @desc: Get data on Energy Burned Goal from HealthKit
+         * @author: Darren Powers
+         * Notes: based on code for setHeight below
+         */
+        let activeEnergyBurnedSample = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)
+        
+        // Call HealthKitManager's getSample() method to get active energy for today from HealthKit
+        self.healthManager.getEnergyBurned(sampleType: activeEnergyBurnedSample!, completion: { (userActiveEnergyBurned, error) -> Void in
+            
+            if( error != nil) {
+                print("Error: \(String(describing: error?.localizedDescription))")
+                return
+            }
+            
+            var activeEnergyBurnedString = ""
+            
+            self.activeEnergyBurned = userActiveEnergyBurned as? HKQuantitySample
+            
+            // The AEB is formatted to the user's locale.
+            if let joules = self.activeEnergyBurned?.quantity.doubleValue(for: HKUnit.joule()) {
+                let formatAEB = EnergyFormatter()
+                formatAEB.isForFoodEnergyUse = false
+                activeEnergyBurnedString = formatAEB.string(fromJoules: joules)
+            }
+            
+            DispatchQueue.global(qos: .userInitiated).async{
+                DispatchQueue.main.async {
+                    self.activeEnergyBurnedLabel.text = activeEnergyBurnedString
+                }
+            }
+            
+        })
     }
     
     func setHeight() {

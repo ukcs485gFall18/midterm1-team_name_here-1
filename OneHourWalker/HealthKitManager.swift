@@ -66,6 +66,39 @@ class HealthKitManager {
         self.healthKitStore.execute(heightQuery)
     }
     
+    func getEnergyBurned(sampleType: HKSampleType, completion: ((HKSample?, NSError?) -> Void)!) {
+        /* @description: get EnergyBurned from HealthKit
+         * @author: Darren Powers
+         * Note: Code mirrors code for pulling height from healthkit provided in tutorial by Matthew Maher
+         */
+        
+        // Build predicate for EnergyBurnedGoal query
+        let distantPastEBG = NSDate.distantPast as NSDate
+        let currentDate = NSDate()
+        let lastEBGPredicate = HKQuery.predicateForSamples(withStart: distantPastEBG as Date, end: currentDate as Date, options:[])
+        
+        // Get most recent most recent EnergyBurnedGoal
+        let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
+        
+        //Query for HealthKit goal
+        let EBGQuery = HKSampleQuery(sampleType: sampleType, predicate: lastEBGPredicate, limit: 1, sortDescriptors: [sortDescriptor]) { (sampleQuery, results, error ) -> Void in
+            
+            if let queryError = error {
+                completion?(nil, queryError as NSError)
+                return
+            }
+            // Set the firstHKQuantitySample in results as the most recent goal
+            let lastEBG = results!.first
+            if completion != nil {
+                completion(lastEBG, nil)
+            }
+            
+        }
+        
+        //Execute query
+        self.healthKitStore.execute(EBGQuery)
+    }
+    
     func saveDistance(distanceRecorded: Double, date: NSDate ) {
         
         // Set the quantity type to the running/walking distance.

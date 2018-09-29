@@ -99,6 +99,13 @@
                                     <action selector="chooseToCycle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SUq-eC-KKs"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Calories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JH-gf-fc9">
+                                <rect key="frame" x="156" y="464" width="63" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -118,6 +125,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activeEnergyBurnedLabel" destination="1JH-gf-fc9" id="MhR-if-AId"/>
                         <outlet property="heightLabel" destination="YrR-Ti-pGA" id="A9z-sb-8OT"/>
                         <outlet property="milesLabel" destination="yjr-Zl-GdU" id="VX2-5F-r3M"/>
                         <outlet property="timerLabel" destination="iwP-JB-PfC" id="cWb-6c-RXb"/>
