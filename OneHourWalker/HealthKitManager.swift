@@ -30,7 +30,7 @@ class HealthKitManager {
         // Request authorization to read and/or write the specific data.
         healthKitStore.requestAuthorization(toShare: healthDataToWrite, read: healthDataToRead) { success, error in
             guard error == nil, success else {
-                print(error);return
+                print(error!);return
             }
             //You can start using HealthKit data
         }
