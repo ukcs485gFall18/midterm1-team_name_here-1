@@ -104,6 +104,15 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
 
     }
     
+    @IBAction func chooseToWalkNRun(_ sender: Any) {
+        
+    }
+    
+    
+    @IBAction func chooseToCycle(_ sender: Any) {
+        
+    }
+    
     @objc @IBAction func startTimer(sender: AnyObject) {
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
         zeroTime = NSDate.timeIntervalSinceReferenceDate
