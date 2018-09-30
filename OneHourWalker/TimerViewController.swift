@@ -19,9 +19,13 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
+    @IBOutlet weak var walkButton: UIButton!
+    @IBOutlet weak var cycleButton: UIButton!
     
     var zeroTime = TimeInterval()
     var timer : Timer = Timer()
+    
+    var id = 1 // identify Walk+Run and Cycling, id = 1 means Walk+Run is clicked, on the other hand, Cycling is clicked
     
     let locationManager = CLLocationManager()
     var startLocation: CLLocation!
@@ -163,13 +167,16 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
 
     }
     
-    @IBAction func chooseToWalkNRun(_ sender: Any) {
-        
+    @IBAction func chooseToWalk(_ sender: UIButton) {
+        walkButton.setTitleColor(UIColor.orange, for: .normal) // set selected button color to orange
+        cycleButton.setTitleColor(UIColor.blue, for: .normal) // set the other button color to default
+        id = 1
     }
     
-    
-    @IBAction func chooseToCycle(_ sender: Any) {
-        
+    @IBAction func chooseToCycly(_ sender: UIButton) {
+        cycleButton.setTitleColor(UIColor.orange, for: .normal)
+        walkButton.setTitleColor(UIColor.blue, for: .normal)
+        id = 2
     }
     
     @objc @IBAction func startTimer(sender: AnyObject) {
@@ -225,7 +232,18 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func share(sender: AnyObject) {
-        healthManager.saveDistance(distanceRecorded: distanceTraveled, date: NSDate())
+        switch id {
+        case 1:
+            // Selected Walk+Run, saving DistanceWalkingRunning
+            healthManager.saveDistanceWalkingRunning(distanceRecorded: distanceTraveled, date: NSDate())
+        case 2:
+            // Selected Cycling, saving DistanceCycling
+            healthManager.saveDistanceCycling(distanceRecorded: distanceTraveled, date: NSDate())
+        default:
+            // If user has not clicked Walk+Run or Cycling, default is Walk+Run
+            healthManager.saveDistanceWalkingRunning(distanceRecorded: distanceTraveled, date: NSDate())
+
+        }
     }
 
 }

@@ -12,7 +12,6 @@
 		2CB31D021C760FAD006D044B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB31D001C760FAD006D044B /* Main.storyboard */; };
 		2CB31D041C760FAD006D044B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB31D031C760FAD006D044B /* Assets.xcassets */; };
 		2CB31D071C760FAD006D044B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB31D051C760FAD006D044B /* LaunchScreen.storyboard */; };
-		2CB31D1D1C760FAD006D044B /* OneHourWalkerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB31D1C1C760FAD006D044B /* OneHourWalkerUITests.swift */; };
 		2CB31D361C7611A8006D044B /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB31D351C7611A8006D044B /* TimerViewController.swift */; };
 		2CB31D381C761905006D044B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB31D371C761905006D044B /* CustomView.swift */; };
 		2CB31D3A1C762204006D044B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB31D391C762204006D044B /* CustomButton.swift */; };
@@ -47,8 +46,6 @@
 		2CB31D081C760FAD006D044B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CB31D0D1C760FAD006D044B /* OneHourWalkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneHourWalkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CB31D181C760FAD006D044B /* OneHourWalkerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneHourWalkerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CB31D1C1C760FAD006D044B /* OneHourWalkerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneHourWalkerUITests.swift; sourceTree = "<group>"; };
-		2CB31D1E1C760FAD006D044B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CB31D351C7611A8006D044B /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		2CB31D371C761905006D044B /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		2CB31D391C762204006D044B /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -97,7 +94,6 @@
 			children = (
 				2CB31D3B1C77637D006D044B /* CoreLocation.framework */,
 				2CB31CFB1C760FAD006D044B /* OneHourWalker */,
-				2CB31D1B1C760FAD006D044B /* OneHourWalkerUITests */,
 				2CB31CFA1C760FAD006D044B /* Products */,
 				7EC2D2B1215EC9950061F762 /* Frameworks */,
 			);
@@ -127,15 +123,6 @@
 				2CB31D081C760FAD006D044B /* Info.plist */,
 			);
 			path = OneHourWalker;
-			sourceTree = "<group>";
-		};
-		2CB31D1B1C760FAD006D044B /* OneHourWalkerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2CB31D1C1C760FAD006D044B /* OneHourWalkerUITests.swift */,
-				2CB31D1E1C760FAD006D044B /* Info.plist */,
-			);
-			path = OneHourWalkerUITests;
 			sourceTree = "<group>";
 		};
 		2CB31D2C1C7610B9006D044B /* View */ = {
@@ -322,7 +309,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CB31D1D1C760FAD006D044B /* OneHourWalkerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
