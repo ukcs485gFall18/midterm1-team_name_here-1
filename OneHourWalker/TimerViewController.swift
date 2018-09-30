@@ -43,12 +43,17 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // We cannot access the user's HealthKit data without specific permission.
-        getHealthKitPermission()
+        if #available(iOS 9.3, *) {
+            getHealthKitPermission()
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     var height: HKQuantitySample?
     var activeEnergyBurned: HKQuantitySample?
     
+    @available(iOS 9.3, *)
     func getHealthKitPermission() {
         
         // Seek authorization in HealthKitManager.swift.
@@ -69,15 +74,15 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
         setActiveEnergyBurned()// Added by Darren Powers
     }
     
+    @available(iOS 9.3, *)
     func setActiveEnergyBurned() {
         /* @desc: Get data on Energy Burned Goal from HealthKit
          * @author: Darren Powers
-         * Notes: based on code for setHeight below
+         * Notes: based on code for setHeight below and includes information gathered from: https://crunchybagel.com/accessing-activity-rings-data-from-healthkit/
          */
-        let activeEnergyBurnedSample = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)
         
         // Call HealthKitManager's getSample() method to get active energy for today from HealthKit
-        self.healthManager.getEnergyBurned(sampleType: activeEnergyBurnedSample!, completion: { (userActiveEnergyBurned, error) -> Void in
+        self.healthManager.getEnergyBurned(completion: { (userActiveEnergyBurned, userAEBGoal, error) -> Void in
             
             if( error != nil) {
                 print("Error: \(String(describing: error?.localizedDescription))")
@@ -86,20 +91,14 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
             
             var activeEnergyBurnedString = ""
             
-            self.activeEnergyBurned = userActiveEnergyBurned as? HKQuantitySample
-            print("Error: \(String(describing: self.activeEnergyBurned))")
             
-            let calories = self.activeEnergyBurned?.quantity.doubleValue(for: HKUnit.kilocalorie())
-            let formatAEB = EnergyFormatter()
-            activeEnergyBurnedString = formatAEB.string(fromValue: calories!, unit: EnergyFormatter.Unit.kilocalorie)
-            print("THIS IS STRING: \(activeEnergyBurnedString)")
+            activeEnergyBurnedString = "\(String(describing: userActiveEnergyBurned)) burned of \(String(describing: userAEBGoal)) goal"
+            print(activeEnergyBurnedString)
+            if userAEBGoal?.isLess(than: userActiveEnergyBurned ?? 0) ?? false {
+                activeEnergyBurnedString += "Congrats!"
+            }
             
-//            // The AEB is formatted to the user's locale.
-//            if let joules = self.activeEnergyBurned?.quantity.doubleValue(for: HKUnit.joule()) {
-//                let formatAEB = EnergyFormatter()
-//                activeEnergyBurnedString = formatAEB.string(fromJoules: joules)
-//            }
-//            print(activeEnergyBurnedString)
+
             DispatchQueue.global(qos: .userInitiated).async{
                 DispatchQueue.main.async {
                     self.caloriesLabel.text = activeEnergyBurnedString

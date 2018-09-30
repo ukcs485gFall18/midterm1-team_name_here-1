@@ -14,10 +14,11 @@ class HealthKitManager {
     
     let healthKitStore: HKHealthStore = HKHealthStore()
     
+    @available(iOS 9.3, *)
     func authorizeHealthKit(completion: ((_ success: Bool, _ error: NSError?) -> Void)!) {
         
         // State the health data type(s) we want to read from HealthKit.
-        let healthDataToRead = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!, HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!) //Added request for access to activeEnergy Burned
+        let healthDataToRead = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!, HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!, HKObjectType.activitySummaryType()) //Added request for access to activeEnergy Burned
         
         // State the health data type(s) we want to write from HealthKit.
         let healthDataToWrite = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!)
@@ -66,38 +67,52 @@ class HealthKitManager {
         self.healthKitStore.execute(heightQuery)
     }
     
-    func getEnergyBurned(sampleType: HKSampleType, completion: ((HKSample?, NSError?) -> Void)!) {
+    @available(iOS 9.3, *)
+    func getEnergyBurned(completion: ((Double?, Double?, NSError?) -> Void)!) {
         /* @description: get EnergyBurned from HealthKit
          * @author: Darren Powers
-         * Note: Code mirrors code for pulling height from healthkit provided in tutorial by Matthew Maher
+         * Note: Information for collecting this data from https://crunchybagel.com/accessing-activity-rings-data-from-healthkit/
+         * accessed on 9/29/2018 by Darren Powers
          */
         
         // Build predicate for EnergyBurned query
-        let distantPastEB = NSDate.distantPast as NSDate
-        let currentDate = NSDate()
-        let lastEBPredicate = HKQuery.predicateForSamples(withStart: distantPastEB as Date, end: currentDate as Date, options:[])
+        let calendar = Calendar.autoupdatingCurrent
+        var dateComponents = calendar.dateComponents([.year, .month, .day], from: Date())
+        dateComponents.calendar = calendar
         
-        // Get most recent most recent EnergyBurnedGoal
-        let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
+        let predicate = HKQuery.predicateForActivitySummary(with: dateComponents)
+        print(predicate)
         
-        //Query for HealthKit goal
-        let EBQuery = HKSampleQuery(sampleType: sampleType, predicate: lastEBPredicate, limit: 1, sortDescriptors: [sortDescriptor]) { (sampleQuery, results, error ) -> Void in
-            
+        let EBQuery = HKActivitySummaryQuery(predicate: predicate) { (EBQuery, summaries, error) in
             if let queryError = error {
-                completion?(nil, queryError as NSError)
+                completion?(nil, nil, queryError as NSError)
+                print("ERROR")
                 return
             }
-            // Set the firstHKQuantitySample in results as the most recent goal
-            let lastEB = results!.first
-            if completion != nil {
-                completion(lastEB, nil)
-            }
+            var energyUnit:HKUnit
+            var energy:Double = 0
+            var goal:Double = 0
             
+            for summary in summaries! {
+                energyUnit = HKUnit.kilocalorie()
+                print("EnergyUnit: \(energyUnit)")
+                energy = summary.activeEnergyBurned.doubleValue(for: energyUnit)
+                print("Energy: \(energy)")
+                goal = summary.activeEnergyBurnedGoal.doubleValue(for: energyUnit)
+                print("Goal: \(goal)")
+                
+            }
+            // Set the first HKQuantitySample in results as the most recent height.
+            print(summaries)
+            if completion != nil {
+                // Format calories as "kilocalories" (which are what we think of as 'calories'
+                completion?(energy as Double, goal as Double, nil)
+            }
         }
-        
         //Execute query
         self.healthKitStore.execute(EBQuery)
         print("This Worked")
+    
     }
     
     func saveDistance(distanceRecorded: Double, date: NSDate ) {
