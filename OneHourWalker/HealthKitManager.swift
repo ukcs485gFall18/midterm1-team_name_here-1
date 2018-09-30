@@ -138,7 +138,7 @@ class HealthKitManager {
     
     }
     
-    func saveDistance(distanceRecorded: Double, date: NSDate ) {
+    func saveDistance(distanceRecorded: Double, date: NSDate ) { }
     func saveDistanceWalkingRunning(distanceRecorded: Double, date: NSDate ) {
         
         // Set the quantity type to the running/walking distance.
