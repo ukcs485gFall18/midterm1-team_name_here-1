@@ -104,7 +104,10 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
             var calorieGoalString = " "
             var sourceString = ""
             
-            if (userAEBGoal == nil) {
+            if (userActiveEnergyBurned == nil) {
+                sourceString = "No recorded calorie data in HealthKit"
+                activeEnergyBurnedString = " "
+            } else if (userAEBGoal == nil) {
                 sourceString = "From HealthKit Sample:"
                activeEnergyBurnedString = "Today's Calories: \(String(describing: userActiveEnergyBurned!))"
             } else {

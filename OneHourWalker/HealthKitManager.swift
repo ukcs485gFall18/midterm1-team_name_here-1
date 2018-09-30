@@ -95,7 +95,6 @@ class HealthKitManager {
         let EBQuery = HKActivitySummaryQuery(predicate: predicate) { (EBQuery, summaries, error) in
             guard let summaries = summaries, summaries.count > 0
                 else {
-                    print("failure")
                     //If no activity summaries, get sample data instead (code based on tutorial and getHeight)
                     // Build Predicate
                     let distantPastEB = NSDate.distantPast as NSDate
@@ -128,11 +127,8 @@ class HealthKitManager {
             
             for summary in summaries {
                 energyUnit = HKUnit.kilocalorie()
-                print("EnergyUnit: \(energyUnit)")
                 energy = summary.activeEnergyBurned.doubleValue(for: energyUnit)
-                print("Energy: \(energy)")
                 goal = summary.activeEnergyBurnedGoal.doubleValue(for: energyUnit)
-                print("Goal: \(goal)")
                 
             }
             // Set the first HKQuantitySample in results as the most recent height.
@@ -144,7 +140,6 @@ class HealthKitManager {
         }
         //Execute query
         self.healthKitStore.execute(EBQuery)
-        print("This Worked")
     
     }
     
