@@ -17,7 +17,7 @@ class HealthKitManager {
     func authorizeHealthKit(completion: ((_ success: Bool, _ error: NSError?) -> Void)!) {
         
         // State the health data type(s) we want to read from HealthKit.
-        let healthDataToRead = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!)
+        let healthDataToRead = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!, HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!) //Added request for access to activeEnergy Burned
         
         // State the health data type(s) we want to write from HealthKit.
         let healthDataToWrite = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!)
@@ -72,31 +72,32 @@ class HealthKitManager {
          * Note: Code mirrors code for pulling height from healthkit provided in tutorial by Matthew Maher
          */
         
-        // Build predicate for EnergyBurnedGoal query
-        let distantPastEBG = NSDate.distantPast as NSDate
+        // Build predicate for EnergyBurned query
+        let distantPastEB = NSDate.distantPast as NSDate
         let currentDate = NSDate()
-        let lastEBGPredicate = HKQuery.predicateForSamples(withStart: distantPastEBG as Date, end: currentDate as Date, options:[])
+        let lastEBPredicate = HKQuery.predicateForSamples(withStart: distantPastEB as Date, end: currentDate as Date, options:[])
         
         // Get most recent most recent EnergyBurnedGoal
         let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
         
         //Query for HealthKit goal
-        let EBGQuery = HKSampleQuery(sampleType: sampleType, predicate: lastEBGPredicate, limit: 1, sortDescriptors: [sortDescriptor]) { (sampleQuery, results, error ) -> Void in
+        let EBQuery = HKSampleQuery(sampleType: sampleType, predicate: lastEBPredicate, limit: 1, sortDescriptors: [sortDescriptor]) { (sampleQuery, results, error ) -> Void in
             
             if let queryError = error {
                 completion?(nil, queryError as NSError)
                 return
             }
             // Set the firstHKQuantitySample in results as the most recent goal
-            let lastEBG = results!.first
+            let lastEB = results!.first
             if completion != nil {
-                completion(lastEBG, nil)
+                completion(lastEB, nil)
             }
             
         }
         
         //Execute query
-        self.healthKitStore.execute(EBGQuery)
+        self.healthKitStore.execute(EBQuery)
+        print("This Worked")
     }
     
     func saveDistance(distanceRecorded: Double, date: NSDate ) {

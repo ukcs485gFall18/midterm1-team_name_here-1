@@ -16,7 +16,8 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var milesLabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
-    @IBOutlet weak var activeEnergyBurnedLabel: UILabel!
+    @IBOutlet weak var caloriesLabel: UILabel!
+    @IBOutlet weak var goalLabel: UILabel!
     
     var zeroTime = TimeInterval()
     var timer : Timer = Timer()
@@ -54,8 +55,9 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
         healthManager.authorizeHealthKit { (authorized,  error) -> Void in
             if authorized {
                 
-                // Get and set the user's height.
+                // Get and set the user's height and calories burned.
                 self.setHeight()
+                self.setActiveEnergyBurned() //Added by Darren Powers
             } else {
                 if error != nil {
                     print(error!)
@@ -64,7 +66,7 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
         setHeight()
-        setActiveEnergyBurned()
+        setActiveEnergyBurned()// Added by Darren Powers
     }
     
     func setActiveEnergyBurned() {
@@ -85,17 +87,22 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
             var activeEnergyBurnedString = ""
             
             self.activeEnergyBurned = userActiveEnergyBurned as? HKQuantitySample
+            print("Error: \(String(describing: self.activeEnergyBurned))")
             
-            // The AEB is formatted to the user's locale.
-            if let joules = self.activeEnergyBurned?.quantity.doubleValue(for: HKUnit.joule()) {
-                let formatAEB = EnergyFormatter()
-                formatAEB.isForFoodEnergyUse = false
-                activeEnergyBurnedString = formatAEB.string(fromJoules: joules)
-            }
+            let calories = self.activeEnergyBurned?.quantity.doubleValue(for: HKUnit.kilocalorie())
+            let formatAEB = EnergyFormatter()
+            activeEnergyBurnedString = formatAEB.string(fromValue: calories!, unit: EnergyFormatter.Unit.kilocalorie)
+            print("THIS IS STRING: \(activeEnergyBurnedString)")
             
+//            // The AEB is formatted to the user's locale.
+//            if let joules = self.activeEnergyBurned?.quantity.doubleValue(for: HKUnit.joule()) {
+//                let formatAEB = EnergyFormatter()
+//                activeEnergyBurnedString = formatAEB.string(fromJoules: joules)
+//            }
+//            print(activeEnergyBurnedString)
             DispatchQueue.global(qos: .userInitiated).async{
                 DispatchQueue.main.async {
-                    self.activeEnergyBurnedLabel.text = activeEnergyBurnedString
+                    self.caloriesLabel.text = activeEnergyBurnedString
                 }
             }
             
