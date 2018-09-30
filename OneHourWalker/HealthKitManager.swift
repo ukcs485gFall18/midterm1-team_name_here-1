@@ -66,10 +66,31 @@ class HealthKitManager {
         self.healthKitStore.execute(heightQuery)
     }
     
-    func saveDistance(distanceRecorded: Double, date: NSDate ) {
+    func saveDistanceWalkingRunning(distanceRecorded: Double, date: NSDate ) {
         
         // Set the quantity type to the running/walking distance.
         let distanceType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)
+        
+        // Set the unit of measurement to miles.
+        let distanceQuantity = HKQuantity(unit: HKUnit.mile(), doubleValue: distanceRecorded)
+        
+        // Set the official Quantity Sample.
+        let distance = HKQuantitySample(type: distanceType!, quantity: distanceQuantity, start: date as Date, end: date as Date)
+        
+        // Save the distance quantity sample to the HealthKit Store.
+        healthKitStore.save(distance, withCompletion: { (success, error) -> Void in
+            if( error != nil ) {
+                print(error!)
+            } else {
+                print("The distance has been recorded! Better go check!")
+            }
+        })
+    }
+    
+    func saveDistanceCycling(distanceRecorded: Double, date: NSDate ) {
+        
+        // Set the quantity type to the running/walking distance.
+        let distanceType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceCycling)
         
         // Set the unit of measurement to miles.
         let distanceQuantity = HKQuantity(unit: HKUnit.mile(), doubleValue: distanceRecorded)

@@ -89,6 +89,7 @@
                                 <state key="normal" title="Walk+Run"/>
                                 <connections>
                                     <action selector="ChooseToWalkNRun:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sQ4-hC-itl"/>
+                                    <action selector="chooseToWalk:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JZ9-V9-ldL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ocn-1Y-OIz">
@@ -97,6 +98,7 @@
                                 <state key="normal" title="Cycling"/>
                                 <connections>
                                     <action selector="chooseToCycle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SUq-eC-KKs"/>
+                                    <action selector="chooseToCycly:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TJH-JW-3em"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -118,9 +120,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cycleButton" destination="Ocn-1Y-OIz" id="c5g-6Q-R7K"/>
                         <outlet property="heightLabel" destination="YrR-Ti-pGA" id="A9z-sb-8OT"/>
                         <outlet property="milesLabel" destination="yjr-Zl-GdU" id="VX2-5F-r3M"/>
                         <outlet property="timerLabel" destination="iwP-JB-PfC" id="cWb-6c-RXb"/>
+                        <outlet property="walkButton" destination="IeF-9V-YyX" id="et1-eY-6hX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
