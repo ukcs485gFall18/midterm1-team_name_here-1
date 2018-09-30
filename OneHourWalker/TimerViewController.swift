@@ -20,7 +20,7 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     var zeroTime = TimeInterval()
     var timer : Timer = Timer()
     
-    var id = 1 // identify Walk+Run and Cycling, id = 1 means Walk+Run is clicked, in the other hand, Cycling is clicked
+    var id = 1 // identify Walk+Run and Cycling, id = 1 means Walk+Run is clicked, on the other hand, Cycling is clicked
     
     let locationManager = CLLocationManager()
     var startLocation: CLLocation!
