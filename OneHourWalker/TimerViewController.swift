@@ -18,6 +18,7 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
+    @IBOutlet weak var sourceLabel: UILabel!
     
     var zeroTime = TimeInterval()
     var timer : Timer = Timer()
@@ -26,6 +27,8 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     var startLocation: CLLocation!
     var lastLocation: CLLocation!
     var distanceTraveled = 0.0
+    
+    var energyGoalMet = false
     
     let healthManager:HealthKitManager = HealthKitManager()
     
@@ -90,18 +93,28 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
             }
             
             var activeEnergyBurnedString = ""
+            var calorieGoalString = " "
+            var sourceString = ""
             
-            
-            activeEnergyBurnedString = "\(String(describing: userActiveEnergyBurned)) burned of \(String(describing: userAEBGoal)) goal"
-            print(activeEnergyBurnedString)
-            if userAEBGoal?.isLess(than: userActiveEnergyBurned ?? 0) ?? false {
-                activeEnergyBurnedString += "Congrats!"
+            if (userAEBGoal == nil) {
+                sourceString = "From HealthKit Sample:"
+                activeEnergyBurnedString = "Today's Calories: \(String(describing: userActiveEnergyBurned!))"
+            } else {
+                sourceString = "From Activity Summary:"
+                activeEnergyBurnedString = "Today's Calories: \(String(describing: userActiveEnergyBurned!)) cal"
+                calorieGoalString = "Calorie Goal: \(String(describing: userAEBGoal)) cal"
+                if (Double(userAEBGoal!).isLess(than: userActiveEnergyBurned as! Double)) {
+                    self.energyGoalMet = true
+                    calorieGoalString += " Congratulations!"
+                }
             }
             
 
             DispatchQueue.global(qos: .userInitiated).async{
                 DispatchQueue.main.async {
+                    self.sourceLabel.text = sourceString
                     self.caloriesLabel.text = activeEnergyBurnedString
+                    self.goalLabel.text = calorieGoalString
                 }
             }
             
