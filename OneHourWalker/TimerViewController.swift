@@ -16,9 +16,11 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var milesLabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
+    //Darren added caloriesLabel, goalLabel, and sourceLabel
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
+    //Siyuan added walkButton, cycleButton
     @IBOutlet weak var walkButton: UIButton!
     @IBOutlet weak var cycleButton: UIButton!
     
@@ -32,6 +34,8 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     var lastLocation: CLLocation!
     var distanceTraveled = 0.0
     
+    //Darren added energyGoalMet flag
+    //For use in achievement system
     var energyGoalMet = false
     
     let healthManager:HealthKitManager = HealthKitManager()

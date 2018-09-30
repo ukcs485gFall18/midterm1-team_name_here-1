@@ -106,14 +106,14 @@
                                 </constraints>
                                 <state key="normal" title="Walk+Run"/>
                                 <connections>
-                                    <action selector="ChooseToWalkNRun:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sQ4-hC-itl"/>
+                                    <action selector="chooseToWalk:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KcA-WV-JXQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ocn-1Y-OIz">
                                 <rect key="frame" x="246" y="81" width="51" height="30"/>
                                 <state key="normal" title="Cycling"/>
                                 <connections>
-                                    <action selector="chooseToCycle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SUq-eC-KKs"/>
+                                    <action selector="chooseToCycly:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QgY-7W-CFn"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calorie Goal:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duS-rB-sBI" userLabel="Calorie Goal Label">
@@ -170,11 +170,13 @@
                     </view>
                     <connections>
                         <outlet property="caloriesLabel" destination="kkV-u7-7oN" id="uAH-eB-rcr"/>
+                        <outlet property="cycleButton" destination="Ocn-1Y-OIz" id="UOz-Px-0FG"/>
                         <outlet property="goalLabel" destination="duS-rB-sBI" id="ETy-Ae-WP3"/>
                         <outlet property="heightLabel" destination="YrR-Ti-pGA" id="A9z-sb-8OT"/>
                         <outlet property="milesLabel" destination="yjr-Zl-GdU" id="VX2-5F-r3M"/>
                         <outlet property="sourceLabel" destination="yVr-Qt-2kK" id="UY7-W4-Zjb"/>
                         <outlet property="timerLabel" destination="iwP-JB-PfC" id="cWb-6c-RXb"/>
+                        <outlet property="walkButton" destination="IeF-9V-YyX" id="0Yk-Ka-fki"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
