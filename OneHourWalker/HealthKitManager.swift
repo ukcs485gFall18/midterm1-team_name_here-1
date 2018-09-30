@@ -21,15 +21,25 @@ class HealthKitManager {
         let healthDataToRead = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!, HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!, HKObjectType.activitySummaryType()) //Added request for access to activeEnergy Burned
         
         // State the health data type(s) we want to write from HealthKit.
-        let healthDataToWrite = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!)
+        let healthWalkingDataToWrite = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!)
+        
+        let healthCyclingDataToWrite = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceCycling)!)
         
         // Just in case OneHourWalker makes its way to an iPad...
         if !HKHealthStore.isHealthDataAvailable() {
             print("Can't access HealthKit.")
         }
         
-        // Request authorization to read and/or write the specific data.
-        healthKitStore.requestAuthorization(toShare: healthDataToWrite, read: healthDataToRead) { success, error in
+        // Request authorization to read and/or write the Walking+Running data.
+        healthKitStore.requestAuthorization(toShare: healthWalkingDataToWrite, read: healthDataToRead) { success, error in
+            guard error == nil, success else {
+                print(error!);return
+            }
+            //You can start using HealthKit data
+        }
+        
+        // Request authorization to read and/or write the Cycling data.
+        healthKitStore.requestAuthorization(toShare: healthCyclingDataToWrite, read: healthDataToRead) { success, error in
             guard error == nil, success else {
                 print(error!);return
             }
@@ -138,7 +148,7 @@ class HealthKitManager {
     
     }
     
-    func saveDistance(distanceRecorded: Double, date: NSDate ) { }
+    // share method would save Walking+Running distance into HealthKit
     func saveDistanceWalkingRunning(distanceRecorded: Double, date: NSDate ) {
         
         // Set the quantity type to the running/walking distance.
@@ -160,6 +170,7 @@ class HealthKitManager {
         })
     }
     
+    // share method would save cycling distance into HealthKit
     func saveDistanceCycling(distanceRecorded: Double, date: NSDate ) {
         
         // Set the quantity type to the running/walking distance.

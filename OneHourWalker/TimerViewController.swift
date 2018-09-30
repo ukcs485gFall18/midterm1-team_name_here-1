@@ -106,7 +106,7 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
             
             if (userAEBGoal == nil) {
                 sourceString = "From HealthKit Sample:"
-                activeEnergyBurnedString = "Today's Calories: \(String(describing: userActiveEnergyBurned!))"
+//                activeEnergyBurnedString = "Today's Calories: \(String(describing: userActiveEnergyBurned!))"
             } else {
                 sourceString = "From Activity Summary:"
                 activeEnergyBurnedString = "Today's Calories: \(String(describing: userActiveEnergyBurned!)) cal"
@@ -236,18 +236,18 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func share(sender: AnyObject) {
-//        switch id {
-//        case 1:
-//            // Selected Walk+Run, saving DistanceWalkingRunning
-//            healthManager.saveDistanceWalkingRunning(distanceRecorded: distanceTraveled, date: NSDate())
-//        case 2:
-//            // Selected Cycling, saving DistanceCycling
-//            healthManager.saveDistanceCycling(distanceRecorded: distanceTraveled, date: NSDate())
-//        default:
-//            // If user has not clicked Walk+Run or Cycling, default is Walk+Run
-//            healthManager.saveDistanceWalkingRunning(distanceRecorded: distanceTraveled, date: NSDate())
-//
-//        }
+        switch id {
+        case 1:
+            // Selected Walk+Run, saving DistanceWalkingRunning
+            healthManager.saveDistanceWalkingRunning(distanceRecorded: distanceTraveled, date: NSDate())
+        case 2:
+            // Selected Cycling, saving DistanceCycling
+            healthManager.saveDistanceCycling(distanceRecorded: distanceTraveled, date: NSDate())
+        default:
+            // If user has not clicked Walk+Run or Cycling, default is Walk+Run
+            healthManager.saveDistanceWalkingRunning(distanceRecorded: distanceTraveled, date: NSDate())
+
+        }
     }
 
 }
