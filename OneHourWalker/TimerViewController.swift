@@ -106,7 +106,7 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
             
             if (userAEBGoal == nil) {
                 sourceString = "From HealthKit Sample:"
-//                activeEnergyBurnedString = "Today's Calories: \(String(describing: userActiveEnergyBurned!))"
+               activeEnergyBurnedString = "Today's Calories: \(String(describing: userActiveEnergyBurned!))"
             } else {
                 sourceString = "From Activity Summary:"
                 activeEnergyBurnedString = "Today's Calories: \(String(describing: userActiveEnergyBurned!)) cal"
@@ -224,7 +224,7 @@ class TimerViewController: UIViewController, CLLocationManagerDelegate {
         if startLocation == nil {
             startLocation = locations.first
         } else {
-            let lastDistance = lastLocation.distance(from: locations.last as! CLLocation)
+            let lastDistance = lastLocation.distance(from: (locations.last )!)
             distanceTraveled += lastDistance * 0.000621371
             
             let trimmedDistance = String(format: "%.2f", distanceTraveled)

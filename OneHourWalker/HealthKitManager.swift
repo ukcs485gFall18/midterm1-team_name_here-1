@@ -91,11 +91,11 @@ class HealthKitManager {
         dateComponents.calendar = calendar
         
         let predicate = HKQuery.predicateForActivitySummary(with: dateComponents)
-        print(predicate)
         
         let EBQuery = HKActivitySummaryQuery(predicate: predicate) { (EBQuery, summaries, error) in
             guard let summaries = summaries, summaries.count > 0
                 else {
+                    print("failure")
                     //If no activity summaries, get sample data instead (code based on tutorial and getHeight)
                     // Build Predicate
                     let distantPastEB = NSDate.distantPast as NSDate
