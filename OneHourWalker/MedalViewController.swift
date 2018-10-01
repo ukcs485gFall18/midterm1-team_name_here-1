@@ -12,6 +12,16 @@ class MedalViewController: UIViewController
 {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var num = 10
+        
+        if num == 10
+        {
+            MedalLabel.text = myString
+        }
+        else{
+            MedalLabel.text = "Not Unlocked"
+        }
     }
     @IBOutlet weak var MedalLabel: UILabel!
     @IBOutlet weak var Medal2Label: UILabel!
@@ -20,6 +30,8 @@ class MedalViewController: UIViewController
     var myString: String = "Unlocked"
     
     var num: Int = 10
+    
+    
     
 
 }
