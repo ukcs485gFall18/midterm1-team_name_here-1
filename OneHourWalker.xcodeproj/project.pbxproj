@@ -17,6 +17,7 @@
 		2CB31D3A1C762204006D044B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB31D391C762204006D044B /* CustomButton.swift */; };
 		2CB31D3C1C77637D006D044B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB31D3B1C77637D006D044B /* CoreLocation.framework */; };
 		7EC2D2B9215ECA540061F762 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC2D2B8215ECA540061F762 /* HealthKit.framework */; };
+		BBEEE80E2161AF0F006281A0 /* MedalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEEE80D2161AF0F006281A0 /* MedalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		2CB31D3B1C77637D006D044B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7EC2D2B0215EC9950061F762 /* OneHourWalker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneHourWalker.entitlements; sourceTree = "<group>"; };
 		7EC2D2B8215ECA540061F762 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		BBEEE80D2161AF0F006281A0 /* MedalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				2CB31D351C7611A8006D044B /* TimerViewController.swift */,
+				BBEEE80D2161AF0F006281A0 /* MedalViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			files = (
 				2CB31CFD1C760FAD006D044B /* AppDelegate.swift in Sources */,
 				2CB31D381C761905006D044B /* CustomView.swift in Sources */,
+				BBEEE80E2161AF0F006281A0 /* MedalViewController.swift in Sources */,
 				2CB31D3A1C762204006D044B /* CustomButton.swift in Sources */,
 				2C5F67A71C7D5370008410B5 /* HealthKitManager.swift in Sources */,
 				2CB31D361C7611A8006D044B /* TimerViewController.swift in Sources */,
