@@ -10,28 +10,36 @@ import UIKit
 
 class MedalViewController: UIViewController
 {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        var num = 10
-        
-        if num == 10
-        {
-            MedalLabel.text = myString
-        }
-        else{
-            MedalLabel.text = "Not Unlocked"
-        }
-    }
+    //These are labels used to show the Medals won
     @IBOutlet weak var MedalLabel: UILabel!
     @IBOutlet weak var Medal2Label: UILabel!
     @IBOutlet weak var Medal3Label: UILabel!
     
-    var myString: String = "Unlocked"
+    @IBOutlet weak var Medal1Info: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+    }
+    
+    var medal1Info: String = "You clicked the button. Yay!"
+    
+    var myString: String = "Medal Unlocked"
+    
+    var myMedal2: String = "Medal Unlocked"
     
     var num: Int = 10
     
+    @IBAction func Medal1(_ sender: Any) {
+        MedalLabel.text = myString
+        Medal1Info.text = medal1Info
+    }
     
-    
+    /*
+     other medals
+     When you burn a certain amount of calories
+     When you run a certain distance
+     Also need to figure out how to keep the display showing
+     */
 
 }
