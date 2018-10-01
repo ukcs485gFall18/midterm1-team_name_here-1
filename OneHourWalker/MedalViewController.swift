@@ -19,8 +19,16 @@ class MedalViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //This is to help keep the users medal label unlocked. Still
+        //needs some work on it
+        let defaults = UserDefaults.standard
+        if let medal = defaults.string(forKey: myString){
+            MedalLabel.text = medal
+        }
     
     }
+    
+   
     
     var medal1Info: String = "You clicked the button. Yay!"
     
@@ -28,9 +36,10 @@ class MedalViewController: UIViewController
     
     var myMedal2: String = "Medal Unlocked"
     
-    var num: Int = 10
-    
+    //This unlocks a medal for clicking a button
     @IBAction func Medal1(_ sender: Any) {
+        //using this to try and keep the user medal label unlocked
+        let defaults = UserDefaults.standard.set(MedalLabel.text!, forKey: myString)
         MedalLabel.text = myString
         Medal1Info.text = medal1Info
     }
